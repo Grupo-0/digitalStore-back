@@ -15,11 +15,13 @@ app.use(allowCrossDomain);
 app.use(express.json())
 
 const UserControler = require('./controller/UserController')
-// app.get('/', function(request, response){
-//     response.send('teste');
-// })
 
-
+//Usuários
 app.post('/users', UserControler.create);
+app.get('/users', UserControler.list);
+app.get('/users/:id', UserControler.listarUm);
+app.put('/users/:id', UserControler.atualizar)
+app.delete('/users/', UserControler.deletarTodos)
+app.delete('/users/:id', UserControler.deletarUm)
 
 app.listen(3000)
