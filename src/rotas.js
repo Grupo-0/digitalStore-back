@@ -14,14 +14,19 @@ app.use(allowCrossDomain);
 
 app.use(express.json())
 
-const UserControler = require('./controller/UserController')
+const UserControler = require('./controller/UserController');
+const ProductController =  require('./controller/ProductController')
 
 //Usuários
 app.post('/users', UserControler.create);
 app.get('/users', UserControler.list);
 app.get('/users/:id', UserControler.listarUm);
-app.put('/users/:id', UserControler.atualizar)
-app.delete('/users/', UserControler.deletarTodos)
+app.put('/users/:id', UserControler.atualizar);
+app.delete('/users/', UserControler.deletarTodos);
 app.delete('/users/:id', UserControler.deletarUm)
+
+//Produtos
+app.post('/products', ProductController.create);
+app.get('/products', ProductController.list);
 
 app.listen(3000)
