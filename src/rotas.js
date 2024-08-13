@@ -15,6 +15,7 @@ app.use(allowCrossDomain);
 app.use(express.json())
 
 const UserControler = require('./controller/UserController')
+const CategoriaController = require('./controller/CategoriaController')
 
 //Usuários
 app.post('/users', UserControler.create);
@@ -23,5 +24,17 @@ app.get('/users/:id', UserControler.listarUm);
 app.put('/users/:id', UserControler.atualizar)
 app.delete('/users/', UserControler.deletarTodos)
 app.delete('/users/:id', UserControler.deletarUm)
+
+//Categorias
+app.post('/categorias', CategoriaController.cadastrar);
+app.get('/categorias/', CategoriaController.listar);
+app.get('/categorias/:id', CategoriaController.listarUm);
+app.put('/categorias/:id', CategoriaController.atualizar);
+app.delete('/categorias', CategoriaController.deletarTodos)
+app.delete('/categorias/:id', CategoriaController.deletarUm)
+
+
+
+
 
 app.listen(3000)
