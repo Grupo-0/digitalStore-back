@@ -35,18 +35,23 @@ const ImageController = {
         return response.json('Imagem atualizada com sucesso')
     },
 
-    async deletarTodos(request,response) {
+    async deletarTodas(request,response) {
         await ImagesModel.destroy({})
 
         return response.json('Todos as imagens foram deletados')
 
     },
 
-    /*async deletarUma(request, response){
-        let id = request
-    }*/
-    
+    async deletarUma(request, response){
+        let id = request.params.id;
+        await ImagesModel.destroy({
+            where:{
+                id:id
+            }
+        })
 
-
-
+        return response.json('Imagem deletada com sucesso')
+    }
 }
+
+module.exports = ImageController
