@@ -1,16 +1,16 @@
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 const express = require('express');
 const app = express();
 
 
-let allowCrossDomain = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header('Access-Control-Allow-Headers', "*");
-  next();
-}
-app.use(allowCrossDomain);
+// let allowCrossDomain = function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', "*");
+//   res.header('Access-Control-Allow-Headers', "*");
+//   next();
+// }
+// app.use(allowCrossDomain);
 
 app.use(express.json())
 
@@ -27,6 +27,10 @@ app.delete('/users/:id', UserControler.deletarUm)
 
 //Produtos
 app.post('/products', ProductController.create);
-app.get('/products', ProductController.list);
+app.get('/products', ProductController.listar);
+app.get('/products/:id', ProductController.listarUm);
+app.put('/products/:id', ProductController.AtualizarPorID);
+app.delete('/products/:id', ProductController.DeletarPorID)
+
 
 app.listen(3000)

@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/rotas.js"
+    "start": "nodemon src/rotas.js",
+    "sync":"node src/database/sync.js"
   },
   "author": "",
   "license": "ISC",
