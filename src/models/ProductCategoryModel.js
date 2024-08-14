@@ -22,7 +22,7 @@ const ProductModel = connection.define("Product", {
             },
             onDelete: 'CASCADE'
        
-});
+}});
 
 
 
