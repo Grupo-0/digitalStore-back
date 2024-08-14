@@ -50,12 +50,12 @@ app.put('/products/:id', ProductController.AtualizarPorID);
 app.delete('/products/:id', ProductController.DeletarPorID)
 
 //Imagens
-app.post('/CreateImages', ImageController.criarImagem);
+app.post('/images', ImageController.criarImagem);
 app.get('/images', ImageController.listar);
 app.get('/images/:id', ImageController.listarUma);
-app.put('/UpdateImages/:id', ImageController.atualizar);
-app.delete('/DeleteImages/:id', ImageController.deletarUma);
-app.delete('/Deleteimages', ImageController.deletarTodas)
+app.put('/images/:id', ImageController.atualizar);
+app.delete('/images/:id', ImageController.deletarUma);
+app.delete('/images', ImageController.deletarTodas)
 
 
 
