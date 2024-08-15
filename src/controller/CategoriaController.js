@@ -36,11 +36,7 @@ const CategoriaController = {
         })
     },
     async deletarTodos(request,response){
-        await CategoriaModal.destroy({
-            where:{
-
-            }
-        })
+        await CategoriaModal.destroy({})
         return response.json({
             message: "Todas as categorias foram deletadas"
         })
