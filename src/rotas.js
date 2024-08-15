@@ -17,7 +17,6 @@ app.use(express.json())
 
 const UserControler = require('./controller/UserController')
 const CategoriaController = require('./controller/CategoriaController')
-
 const ProductController =  require('./controller/ProductController')
 const ImageController = require('./controller/ImagesController')
 
@@ -40,8 +39,6 @@ app.delete('/categorias', CategoriaController.deletarTodos)
 app.delete('/categorias/:id', CategoriaController.deletarUm)
 
 
-
-
 //Produtos
 app.post('/products', ProductController.create);
 app.get('/products', ProductController.listar);
@@ -49,8 +46,9 @@ app.get('/products/:id', ProductController.listarUm);
 app.put('/products/:id', ProductController.AtualizarPorID);
 app.delete('/products/:id', ProductController.DeletarPorID)
 
+
 //Imagens
-app.post('/CreateImages', ImageController.criarImagem);
+app.post('/images', ImageController.criarImagem);
 app.get('/images', ImageController.listar);
 app.get('/images/:id', ImageController.listarUma);
 app.put('/UpdateImages/:id', ImageController.atualizar);

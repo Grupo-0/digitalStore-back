@@ -38,7 +38,7 @@ const ImageController = {
     async deletarTodas(request,response) {
         await ImagesModel.destroy({})
 
-        return response.json('Todos as imagens foram deletados')
+        return response.json('Todos as imagens foram deletadas')
 
     },
 
