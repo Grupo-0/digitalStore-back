@@ -53,6 +53,7 @@ const UserControler = {
                     id: id
                 }
             })
+            
         return response.json('Usuário deletado com sucesso');
     },
 }
