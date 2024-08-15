@@ -19,7 +19,9 @@ const CategoriaController = {
 
     async listar(request, response){
         try {
-            let categorias = await CategoriaModal.findAll();
+            let categorias = await CategoriaModal.findAll({
+                attributes: ['name']
+            });
             return response.json(categorias)  
         } catch (error) {
             return response.json({
@@ -63,6 +65,7 @@ const CategoriaController = {
         }
     },
     async deletarTodos(request,response){
+       try {
         await CategoriaModal.destroy({
             where:{
 
@@ -71,9 +74,15 @@ const CategoriaController = {
         return response.json({
             message: "Todas as categorias foram deletadas"
         })
-    },
+       } catch (error) {
+        return response.json({
+            message: "Erro encontrado"
+          })
+    }
+       },
     async deletarUm(request,response){
-        let id = request.params.id;
+        try {
+            let id = request.params.id;
         await CategoriaModal.destroy({
             where:{
                 id:id
@@ -82,6 +91,11 @@ const CategoriaController = {
         return response.json({
             message: "A categoria de id "+id+" foi deletada com sucess0"
         })
+        } catch (error) {
+            return response.json({
+                message: "Erro encontrado"
+              })
+        }
     }
 }
 
