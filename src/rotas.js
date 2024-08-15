@@ -15,7 +15,8 @@ const app = express();
 app.use(express.json())
 
 const UserControler = require('./controller/UserController');
-const ProductController =  require('./controller/ProductController')
+const ProductController =  require('./controller/ProductController');
+const CategoriaController = require('./controller/CategoriaController')
 
 //Usuários
 app.post('/users', UserControler.create);
@@ -31,6 +32,16 @@ app.get('/products', ProductController.listar);
 app.get('/products/:id', ProductController.listarUm);
 app.put('/products/:id', ProductController.AtualizarPorID);
 app.delete('/products/:id', ProductController.DeletarPorID)
+//Categorias
+app.post('/categorias', CategoriaController.cadastrar);
+app.get('/categorias/', CategoriaController.listar);
+app.get('/categorias/:id', CategoriaController.listarUm);
+app.put('/categorias/:id', CategoriaController.atualizar);
+app.delete('/categorias', CategoriaController.deletarTodos)
+app.delete('/categorias/:id', CategoriaController.deletarUm)
+
+
+
 
 
 app.listen(3000)

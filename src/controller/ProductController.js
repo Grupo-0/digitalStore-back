@@ -1,4 +1,7 @@
 const ProductModel = require('../models/ProductModel');
+const UsersModel = require('../models/UsersModal');
+
+ProductModel.belongsTo(UsersModel, {foreignKey:'id'})
 
 const ProductController = {
     create(request, response) {
@@ -8,13 +11,16 @@ const ProductController = {
         })
     },
     async listar(request, response) {
-        const products = await ProductModel.findAll()
+        const products = await ProductModel.findAll({
+            include: UsersModel
+        });
         response.json(products);
     },
     async listarUm(request, response) {
         let id = request.params.id;
         const listarUm = await ProductModel.findOne({
-            where: { id }
+            where: { id },
+            include: UsersModel
         })
         response.json(listarUm)
     },
@@ -34,6 +40,7 @@ const ProductController = {
         return response.json({
             message: "Produto deletado com sucesso!!"
         })
+        
     },
 }
 
