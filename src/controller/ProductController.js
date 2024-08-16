@@ -2,16 +2,17 @@ const ImagesModel = require('../models/ImagesModel');
 const ProductModel = require('../models/ProductModel');
 const UsersModel = require('../models/UsersModal');
 // const ProductOption = require('../models/ProductOptions');
+const verify = require('../middleware/verifyData')
 
-ProductModel.belongsTo(UsersModel, { foreignKey: 'id' });
-ProductModel.hasMany(ImagesModel, { foreignKey: 'id' });
+ProductModel.belongsTo(UsersModel, { foreignKey: 'users_id' });
+ProductModel.hasMany(ImagesModel, { foreignKey: 'product_id' });
 // ProductModel.hasMany(ProductOption, {foreignKey: 'id'})
 
 const ProductController = {
     async create(request, response) {
         const { users_id, name, slug, stock, price, price_with_discount } = request.body
 
-        if (!users_id || !name || !slug || !stock || !price || !price_with_discount) {
+        if (!verify([users_id, name, slug, stock, price, price_with_discount])) {
             return response.json({ message: 'Algum campo obrigatório não foi preenchido!' });
         } else {
             try {
@@ -34,6 +35,7 @@ const ProductController = {
                     // {model: ProductModel}
                 ]
             });
+            console.log(UsersModel)
             response.json(products);
         } catch (error) {
             response.status(500).json({ error: 'Erro ao listar produtos' });

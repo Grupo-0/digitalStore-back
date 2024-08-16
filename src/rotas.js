@@ -29,6 +29,10 @@ app.put('/users/:id', UserControler.atualizar);
 app.delete('/users/', UserControler.deletarTodos);
 app.delete('/users/:id', UserControler.deletarUm)
 
+//Login
+
+app.post('/login', UserControler.login)
+
 //Categorias
 app.post('/categorias', CategoriaController.cadastrar);
 app.get('/categorias/', CategoriaController.listar);
