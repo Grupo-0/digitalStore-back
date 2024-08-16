@@ -14,9 +14,12 @@ const app = express();
 
 app.use(express.json())
 
-const UserControler = require('./controller/UserController');
-const ProductController =  require('./controller/ProductController');
+
+const UserControler = require('./controller/UserController')
 const CategoriaController = require('./controller/CategoriaController')
+const ProductController =  require('./controller/ProductController')
+const ImageController = require('./controller/ImagesController')
+
 
 //Usuários
 app.post('/users', UserControler.create);
@@ -26,12 +29,6 @@ app.put('/users/:id', UserControler.atualizar);
 app.delete('/users/', UserControler.deletarTodos);
 app.delete('/users/:id', UserControler.deletarUm)
 
-//Produtos
-app.post('/products', ProductController.create);
-app.get('/products', ProductController.listar);
-app.get('/products/:id', ProductController.listarUm);
-app.put('/products/:id', ProductController.AtualizarPorID);
-app.delete('/products/:id', ProductController.DeletarPorID)
 //Categorias
 app.post('/categorias', CategoriaController.cadastrar);
 app.get('/categorias/', CategoriaController.listar);
@@ -41,6 +38,21 @@ app.delete('/categorias', CategoriaController.deletarTodos)
 app.delete('/categorias/:id', CategoriaController.deletarUm)
 
 
+//Produtos
+app.post('/products', ProductController.create);
+app.get('/products', ProductController.listar);
+app.get('/products/:id', ProductController.listarUm);
+app.put('/products/:id', ProductController.AtualizarPorID);
+app.delete('/products/:id', ProductController.DeletarPorID)
+
+
+//Imagens
+app.post('/images', ImageController.criarImagem);
+app.get('/images', ImageController.listar);
+app.get('/images/:id', ImageController.listarUma);
+app.put('/UpdateImages/:id', ImageController.atualizar);
+app.delete('/DeleteImages/:id', ImageController.deletarUma);
+app.delete('/Deleteimages', ImageController.deletarTodas)
 
 
 
