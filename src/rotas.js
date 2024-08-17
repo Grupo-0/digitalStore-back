@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.json())
 
-
+const JwtVerifyToken = require('./middleware/jwtVerifyToken')
 const UserControler = require('./controller/UserController')
 const CategoriaController = require('./controller/CategoriaController')
 const ProductController =  require('./controller/ProductController')
@@ -25,35 +25,38 @@ const ImageController = require('./controller/ImagesController')
 app.post('/users', UserControler.create);
 app.get('/users', UserControler.list);
 app.get('/users/:id', UserControler.listarUm);
-app.put('/users/:id', UserControler.atualizar);
-app.delete('/users/', UserControler.deletarTodos);
-app.delete('/users/:id', UserControler.deletarUm)
+app.put('/users/:id', JwtVerifyToken,UserControler.atualizar);
+app.delete('/users/', JwtVerifyToken, UserControler.deletarTodos);
+app.delete('/users/:id',JwtVerifyToken, UserControler.deletarUm)
 
+//Login
+
+app.post('/login', UserControler.login)
 
 //Categorias
-app.post('/categorias', CategoriaController.cadastrar);
+app.post('/categorias',JwtVerifyToken, CategoriaController.cadastrar);
 app.get('/categorias/', CategoriaController.listar);
 app.get('/categorias/:id', CategoriaController.listarUm);
-app.put('/categorias/:id', CategoriaController.atualizar);
-app.delete('/categorias', CategoriaController.deletarTodos)
-app.delete('/categorias/:id', CategoriaController.deletarUm)
+app.put('/categorias/:id',JwtVerifyToken, CategoriaController.atualizar);
+app.delete('/categorias',JwtVerifyToken, CategoriaController.deletarTodos)
+app.delete('/categorias/:id',JwtVerifyToken, CategoriaController.deletarUm)
 
 
 //Produtos
-app.post('/products', ProductController.create);
+app.post('/products',JwtVerifyToken, ProductController.create);
 app.get('/products', ProductController.listar);
 app.get('/products/:id', ProductController.listarUm);
-app.put('/products/:id', ProductController.AtualizarPorID);
-app.delete('/products/:id', ProductController.DeletarPorID)
+app.put('/products/:id',JwtVerifyToken, ProductController.AtualizarPorID);
+app.delete('/products/:id',JwtVerifyToken, ProductController.DeletarPorID)
 
 
 //Imagens
-app.post('/images', ImageController.criarImagem);
-app.get('/images', ImageController.listar);
-app.get('/images/:id', ImageController.listarUma);
-app.put('/UpdateImages/:id', ImageController.atualizar);
-app.delete('/DeleteImages/:id', ImageController.deletarUma);
-app.delete('/Deleteimages', ImageController.deletarTodas)
+// app.post('/images', ImageController.criarImagem);
+// app.get('/images', ImageController.listar);
+// app.get('/images/:id', ImageController.listarUma);
+// app.put('/UpdateImages/:id', ImageController.atualizar);
+// app.delete('/DeleteImages/:id', ImageController.deletarUma);
+// app.delete('/Deleteimages', ImageController.deletarTodas)
 
 
 

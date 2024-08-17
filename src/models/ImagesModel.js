@@ -1,5 +1,6 @@
 const connection = require('../database/connection');
 const {DataTypes} = require('sequelize');
+const ProductModel = require('./ProductModel');
 
 let ImagesModel = connection.define("Images",{
 
@@ -7,7 +8,7 @@ let ImagesModel = connection.define("Images",{
         type: DataTypes.INTEGER,
         allowNull: false,
         references:{
-            model: 'products',
+            model: ProductModel,
             key: 'id'
         },
         onDelete: 'CASCADE'
