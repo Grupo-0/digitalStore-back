@@ -3,15 +3,15 @@ const { DataTypes } = require('sequelize');
 const UsersModal = require('./UsersModal')
 
 const ProductModel = connection.define("Product", {
-    // users_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: UsersModal,
-    //         key: 'id'
-    //     },
-    //     onDelete: 'CASCADE' 
-    // },
+    users_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: UsersModal,
+            key: 'id'
+        },
+        onDelete: 'CASCADE' 
+    },
     enabled: {
         type: DataTypes.BOOLEAN,
         defaultValue: 0
