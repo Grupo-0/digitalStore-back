@@ -1,15 +1,9 @@
 const connection = require('../database/connection');
 const { DataTypes } = require('sequelize');
-const ProductModel = require('./')
+const ProductModel = require('./ProductModel')
 
 
 const ProductOption = connection.define("ProductOption", {
-    id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-        allowNull: false
-    },
     product_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
