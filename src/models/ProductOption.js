@@ -1,7 +1,7 @@
 const connection = require('../database/connection');
 const { DataTypes } = require('sequelize');
+const ProductModel = require('./')
 
-//const ProductOption = require('./ProductModel');
 
 const ProductOption = connection.define("ProductOption", {
     id: {
@@ -10,15 +10,15 @@ const ProductOption = connection.define("ProductOption", {
         autoIncrement: true,
         allowNull: false
     },
-    // product_id: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    //     references: {
-    //         model: ProductModel,
-    //         key: 'id'
-    //     },
-    //     onDelete: 'CASCADE'
-    // },
+    product_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: ProductModel,
+            key: 'id'
+        },
+        onDelete: 'CASCADE'
+    },
     title: {
         type: DataTypes.STRING(255),
         allowNull: false
