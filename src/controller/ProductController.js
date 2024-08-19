@@ -1,12 +1,12 @@
 const ImagesModel = require('../models/ImagesModel');
 const ProductModel = require('../models/ProductModel');
 const UsersModel = require('../models/UsersModal');
-// const ProductOption = require('../models/ProductOptions');
+const ProductOption = require('../models/ProductOption');
 const verify = require('../middleware/verifyData')
 
 ProductModel.belongsTo(UsersModel, { foreignKey: 'users_id' });
 ProductModel.hasMany(ImagesModel, { foreignKey: 'product_id' });
-// ProductModel.hasMany(ProductOption, {foreignKey: 'id'})
+ProductModel.hasMany(ProductOption, {foreignKey: 'product_id'})
 
 const ProductController = {
     async create(request, response) {
@@ -30,9 +30,9 @@ const ProductController = {
         try {
             const products = await ProductModel.findAll({
                 include: [
-                    { model: UsersModel },
+                    { model: UsersModel, attributes:{exclude: "password"}},
                     { model: ImagesModel },
-                    // {model: ProductModel}
+                    {model: ProductOption}
                 ]
             });
             console.log(UsersModel)
@@ -48,9 +48,10 @@ const ProductController = {
             const listarUm = await ProductModel.findOne({
                 where: { id },
                 include: [
-                    { model: UsersModel },
+                    { model: UsersModel, attributes:{exclude: "password"} },
                     { model: ImagesModel },
-                    // {model: ProductModel}
+                    {model: ProductOption}
+                    
                 ]
             });
             if (!listarUm) {

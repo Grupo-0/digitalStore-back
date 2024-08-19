@@ -1,13 +1,35 @@
 const ImagesModel = require("../models/ImagesModel");
+const ProductModel = require("../models/ProductModel");
 const { atualizar } = require("./UserController");
 
 const ImageController = {
-    criarImagem(request, response){
-        ImagesModel.bulkCreate(request.body);
+    async criarImagem(request, response){
+        // const product_id = request.body.product_id;
+        // console.log(2)
+        // const productIdReq = await ProductModel.findOne({
+        //     where: { id: product_id }
+        // });
+
+        // // Se o produto não for encontrado, retorna um erro
+        // if (!productIdReq || productIdReq == undefined) {
+        //     return response.status(404).json({
+        //         message: 'Id do produto não está cadastrado!'
+        //     });
+        // }
+        // else{
+            try {
+                ImagesModel.bulkCreate(request.body);
         response.status(201);
         return response.json({
             message: "Imagem adicionada"
         })
+            } catch (error) {
+                return response.json({
+                   message: "Erro"
+                })
+            }
+        
+        
     },
 
      async listar(request, response){

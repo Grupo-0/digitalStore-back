@@ -39,7 +39,8 @@ const ProductOption = connection.define("ProductOption", {
 }, {
    
     timestamps: false, 
-    tableName: 'product_options'
+    tableName: 'product_options',
+      onDelete: 'CASCADE'
 });
 
 module.exports = ProductOption;
