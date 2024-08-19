@@ -13,11 +13,11 @@ const ProductController = {
         const { users_id, name, slug, stock, price, price_with_discount } = request.body
 
         if (!verify([users_id, name, slug, stock, price, price_with_discount])) {
-            return response.json({ message: 'Algum campo obrigatório não foi preenchido!' });
+            return response.status(400).json({ message: 'Algum campo obrigatório não foi preenchido!' });
         } else {
             try {
                 await ProductModel.create(request.body);
-                return response.json({
+                return response.status(201).json({
                     message: "Produto criado com sucesso!"
                 })
 
@@ -54,7 +54,7 @@ const ProductController = {
                 ]
             });
             if (!listarUm) {
-                return response.json({ message: 'Produto não existe!' })
+                return response.status(404).json({ message: 'Produto não cadastrado!' })
             }
             response.json(listarUm)
 
@@ -69,9 +69,7 @@ const ProductController = {
             ProductModel.update(request.body, {
                 where: { id }
             });
-            return response.json({
-                message: "Produto atualizado com sucesso!!"
-            })
+            return response.status(204).json()
 
         } catch (error) {
             response.status(500).json({ error: 'Erro ao atualizar produto' })
@@ -82,11 +80,7 @@ const ProductController = {
         try {
             let id = request.params.id;
             await ProductModel.destroy({ where: { id } });
-            response.status(204); // Nenhum corpo é retornado
-            return response.json({
-                message: "Produto deletado com sucesso!!"
-            })
-
+            return response.status(204).json();
         } catch (error) {
             response.status(500).json({ error: 'Erro ao deletar produto!' })
         }

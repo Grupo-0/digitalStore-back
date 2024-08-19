@@ -3,7 +3,7 @@ const { atualizar } = require("./UserController");
 
 const ImageController = {
     criarImagem(request, response){
-        ImagesModel.create(request.body);
+        ImagesModel.bulkCreate(request.body);
         response.status(201);
         return response.json({
             message: "Imagem adicionada"

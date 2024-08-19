@@ -51,12 +51,12 @@ app.delete('/products/:id',JwtVerifyToken, ProductController.DeletarPorID)
 
 
 //Imagens
-// app.post('/images', ImageController.criarImagem);
-// app.get('/images', ImageController.listar);
-// app.get('/images/:id', ImageController.listarUma);
-// app.put('/UpdateImages/:id', ImageController.atualizar);
-// app.delete('/DeleteImages/:id', ImageController.deletarUma);
-// app.delete('/Deleteimages', ImageController.deletarTodas)
+app.post('/images', ImageController.criarImagem);
+app.get('/images', ImageController.listar);
+app.get('/images/:id', ImageController.listarUma);
+app.put('/UpdateImages/:id', ImageController.atualizar);
+app.delete('/DeleteImages/:id', ImageController.deletarUma);
+app.delete('/Deleteimages', ImageController.deletarTodas)
 
 
 

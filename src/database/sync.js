@@ -5,4 +5,4 @@ const CategoriaModal = require('../models/CategoriaModal');
 const ImagesModel = require('../models/ImagesModel')
 
 
-connection.sync({force: true});
+connection.sync();
