@@ -17,6 +17,7 @@ app.use(express.json())
 const JwtVerifyToken = require('./middleware/jwtVerifyToken')
 const UserControler = require('./controller/UserController')
 const CategoriaController = require('./controller/CategoriaController')
+const ProductOption = require('./controller/ProductOptionController')
 const ProductController =  require('./controller/ProductController')
 const ImageController = require('./controller/ImagesController')
 
@@ -41,6 +42,9 @@ app.put('/categorias/:id',JwtVerifyToken, CategoriaController.atualizar);
 app.delete('/categorias',JwtVerifyToken, CategoriaController.deletarTodos)
 app.delete('/categorias/:id',JwtVerifyToken, CategoriaController.deletarUm)
 
+//ProductOption
+app.post('/options', ProductOption.create);
+app.get('/options/', ProductOption.list);
 
 //Produtos
 app.post('/products',JwtVerifyToken, ProductController.create);
