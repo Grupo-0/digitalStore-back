@@ -7,7 +7,7 @@ const ProductOptionController = {
     create(request, response) {
         ProductOption.create(request.body);
         response.json({
-            message: ""
+            message: "Opção adicionada!"
         });
     },
 

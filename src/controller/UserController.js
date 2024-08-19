@@ -17,6 +17,16 @@ const UserControler = {
       });
     } else {
       try {
+        const emailReq = await UserModal.findOne({
+            where: { email }
+        });
+    
+        if (emailReq && emailReq.dataValues.id > 0){
+            messageReturn = 'Esse email já está cadastrado!'
+            return response.status(400).json({
+                message: messageReturn
+            })
+        }
         let hash = await bcrypt.hash(request.body.password, 10);
         request.body.password = hash;
         UserModal.create(request.body);

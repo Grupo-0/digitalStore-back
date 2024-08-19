@@ -6,4 +6,4 @@ const ProductOption = require('../models/ProductOption');
 const ImagesModel = require('../models/ImagesModel')
 
 
-connection.sync();
+connection.sync({force:true});
